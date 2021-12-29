@@ -1,6 +1,6 @@
-#include "colors.h"
-#include "campo.h"
-#include "semaphore.h"
+#include "colors.hpp"
+#include "campo.hpp"
+#include "semaphore.cpp"
 #include <iostream>
 #include <string>
 #include <thread>
@@ -10,8 +10,6 @@
 
 using namespace std;
 
-int linesOfCampo = sizeof(campo)/sizeof(campo[0]);
-int columnsOfCampo = campo[0].length()/sizeof(campo[0][0]);
 int contador = 0;
 int gp[] = {1, 1, 1 ,30};
 
@@ -19,10 +17,11 @@ random_device rd;
 mt19937 gen(rd());
 uniform_int_distribution<> distr(0, 3);
 
+Campo campo();
 Semaphore a(1);
 
 bool isValidPosition(int i, int j) {
-    if(i < linesOfCampo && i >= 0 && j < columnsOfCampo && j >= 0){
+    if(i < LINES && i >= 0 && j < COLUMNS && j >= 0){
         if (campo[i][j] == '*' || campo[i][j] == ' ' || campo[i][j] == '.') {
             return true;
         }
@@ -83,8 +82,8 @@ void moveGhost(int i, int j, int ghost) {
 
 //função que printa o mapa do jogo
 void printMap() {
-    for (int i=0; i<linesOfCampo;i++){
-        for (int j=0;j<columnsOfCampo;j++){
+    for (int i=0; i<LINES;i++){
+        for (int j=0;j<COLUMNS;j++){
             if(campo[i][j] == 'x'){
                 cout<<' ';
             } else if (campo[i][j] == '#' || campo[i][j] == ' '){
@@ -101,8 +100,8 @@ void printMap() {
 
 //função para preencher o mapa do jogo com as "bolinhas" que somarão pontos
 void fillMapWithPoints() {
-    for (int i=0; i<linesOfCampo;i++){
-        for (int j=0;j<columnsOfCampo;j++){
+    for (int i=0; i<LINES;i++){
+        for (int j=0;j<COLUMNS;j++){
             if(campo[i][j] != 'x' && campo[i][j] != '#'){
                 campo[i][j] = '.';
             }
