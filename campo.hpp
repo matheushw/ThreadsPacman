@@ -1,11 +1,26 @@
-#ifndef CAMPO_H
-#define CAMPO_H
+#ifndef CAMPO_HPP
+#define CAMPO_HPP
 
 #include <string>
 
 #define LINES 24
 #define COLUMNS 36
 
-class Campo;
+using namespace std;
+
+class Campo {
+    public:
+        Campo(int init);
+        bool isValidPosition(int i, int j);
+        //Printa o mapa do jogo
+        void printMap();
+        //Preenche o mapa do jogo com as "bolinhas" que somarão pontos
+        void fillMapWithPoints();
+        //Muda o valor de um indice da matriz campo.
+        void setPosition(int i, int j, char newValue);
+
+    private:
+        string campo[LINES];
+};
 
 #endif
