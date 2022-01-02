@@ -1,5 +1,6 @@
 #include <string>
 #include <iostream>
+#include <ncurses.h>
 #include "campo.hpp"
 #include "colors.hpp"
 
@@ -23,18 +24,18 @@ Campo::Campo (int init) {
     campo[14] = "xxxxxx# #                   # #xxxxx";
     campo[15] = "####### #  ###############  # ######";
     campo[16] = "#                ###               #";
-    campo[17] = "# ##### #######  ###  ####### ######";
+    campo[17] = "# ##### #######  ###  ####### #### #";
     campo[18] = "#     #                            #";
     campo[19] = "##### # #  ############### # #######";
     campo[20] = "#       #        ###       #       #";
-    campo[21] = "# ############## ### ############# #";
+    campo[21] = "################ ### ############# #";
     campo[22] = "#                                  #";
     campo[23] = "####################################";
     fillMapWithPoints();
 }
 
 bool Campo::isValidPosition(int i, int j) {
-    if(i < LINES && i >= 0 && j < COLUMNS && j >= 0){
+    if(i < MAP_LINES && i >= 0 && j < MAP_COLUMNS && j >= 0){
         if (campo[i][j] == '*' || campo[i][j] == ' ' || campo[i][j] == '.') {
             return true;
         }
@@ -44,26 +45,40 @@ bool Campo::isValidPosition(int i, int j) {
 
 //função que printa o mapa do jogo
 void Campo::printMap() {
-    for (int i=0; i<LINES;i++){
-        for (int j=0;j<COLUMNS;j++){
+    clear();
+    
+    start_color();
+    init_pair(1, COLOR_RED, COLOR_BLACK);
+    init_pair(2, COLOR_WHITE, COLOR_BLACK);
+    init_pair(3, COLOR_YELLOW, COLOR_BLACK);
+
+    for (int i=0; i<MAP_LINES;i++){
+        for (int j=0;j<MAP_COLUMNS;j++){
             if(campo[i][j] == 'x'){
-                cout<<' ';
+                printw(" ");
             } else if (campo[i][j] == '#' || campo[i][j] == ' '){
-                cout<<MAGENTA<<campo[i][j]<<RESET;
+                attron(COLOR_PAIR(2));
+                printw("%c", campo[i][j]);
             } else if (campo[i][j] == '.'){
-                cout<<BOLDWHITE<<campo[i][j]<<RESET;
+                attron(COLOR_PAIR(2));
+                printw("%c", campo[i][j]);
             } else if (campo[i][j] == 'G') {
-                cout<<RED<<campo[i][j]<<RESET;
+                attron(COLOR_PAIR(1));
+                printw("%c", campo[i][j]);
+            } else if (campo[i][j] == 'P') {
+                attron(COLOR_PAIR(3));
+                printw("%c", campo[i][j]);
             }
         }
-        cout<<"\n";
+        printw("\n");
     }
+    refresh();
 }
 
 //função para preencher o mapa do jogo com as "bolinhas" que somarão pontos
 void Campo::fillMapWithPoints() {
-    for (int i=0; i<LINES;i++){
-        for (int j=0;j<COLUMNS;j++){
+    for (int i=0; i<MAP_LINES;i++){
+        for (int j=0;j<MAP_COLUMNS;j++){
             if(campo[i][j] != 'x' && campo[i][j] != '#'){
                 campo[i][j] = '.';
             }

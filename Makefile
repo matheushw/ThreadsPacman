@@ -1,15 +1,15 @@
 # Matheus Barcellos de Castro Cunha - 11208238
 # Botem os nomes aqui!!
 
-FLAGS = -pthread -Wall -pedantic -g -D _POSIX_C_SOURCE=199309L -std=c++11
-OBJS = ghost.o semaphore.o pacman.o campo.o
-EXEC = pacman
+FLAGS = -Wall -pedantic -g -D _POSIX_C_SOURCE=199309L -std=c++11 -lcurses
+OBJS = ghost.o semaphore.o pacman.o campo.o game.o
+EXEC = game
 
 .PHONY: clean
 
-all: pacman
+all: game
 
-pacman: $(OBJS)
+game: $(OBJS)
 	$(CXX) $(FLAGS) $^ -o $@
 
 %.o: %.cpp %.hpp
@@ -19,7 +19,7 @@ pacman: $(OBJS)
 	$(CXX) $(FLAGS) -c $< -o $@
 
 clean: 
-	rm -f *.o *~ pacman
+	rm -f *.o *~ game
 
 run: 
 	./$(EXEC)

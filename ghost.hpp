@@ -19,7 +19,6 @@ class Ghost {
 
         pair<int, int> getPosition();
 
-
     private:
         int id;
         pair<int, int> previousPosition;

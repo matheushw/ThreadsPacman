@@ -3,8 +3,11 @@
 #include "semaphore.hpp"
 #include <unistd.h>
 #include <time.h>
+#include <ncurses.h>
 #include <stdlib.h>
 #include <string>
+#include <chrono>
+#include <thread>
 
 using namespace std;
 
@@ -27,7 +30,7 @@ void Ghost::ghostThread(Semaphore *sem, Campo *campo) {
         move(campo);
         campo->printMap();
         sem->notify();
-        sleep(1);
+        this_thread::sleep_for(chrono::milliseconds(200));
     }
 }
 

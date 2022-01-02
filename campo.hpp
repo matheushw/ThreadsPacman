@@ -3,8 +3,8 @@
 
 #include <string>
 
-#define LINES 24
-#define COLUMNS 36
+#define MAP_LINES 24
+#define MAP_COLUMNS 36
 
 using namespace std;
 
@@ -20,7 +20,7 @@ class Campo {
         void setPosition(int i, int j, char newValue);
 
     private:
-        string campo[LINES];
+        string campo[MAP_LINES];
 };
 
 #endif
