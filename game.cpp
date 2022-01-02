@@ -5,7 +5,6 @@
 #include "pacman.hpp"
 #include <iostream>
 #include <thread>
-#include <pthread.h>
 #include <ncurses.h>
 
 using namespace std;
