@@ -11,6 +11,19 @@ using namespace std;
 
 Semaphore semaphore(1);
 Campo campo(1);
+int pontos = 0;
+
+void printGameOver(int pontos){
+    clear();
+    printw("-\t----------------------\t-\n");
+    printw("-\t    FIM DE JOGO!!!    \t-\n");
+    printw("-\tVoce fez %d pontos!!!!\t-\n", pontos);
+    printw("-\t                      \t-\n");
+    printw("-\t  Obrigado por jogar! \t-\n");
+    printw("-\t----------------------\t-\n");
+    refresh();
+}
+
 
 int main () {
     initscr();
@@ -27,13 +40,15 @@ int main () {
     thread th3(&Ghost::ghostThread, gh3, &semaphore, &campo);
     thread th4(&Ghost::ghostThread, gh4, &semaphore, &campo);
 
-    thread th5(&Pacman::pacmanThread, pc, &campo, &semaphore);
+    thread th5(&Pacman::pacmanThread, pc, &campo, &semaphore, &pontos);
 
     th1.join();
     th2.join();
     th3.join();
     th4.join();
     th5.join();
+
+    printGameOver(pontos);
 
     return 0;
 }

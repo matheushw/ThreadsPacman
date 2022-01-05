@@ -12,31 +12,66 @@ Pacman::Pacman(int _id, pair<int, int> _position) {
     previousPosition = make_pair(-1, -1);
 }
 
-void Pacman::pacmanThread(Campo *campo, Semaphore *semaphore) {
+bool Pacman::isValidPosition(int i, int j, Campo *campo) {
+    if(i < MAP_LINES && i >= 0 && j < MAP_COLUMNS && j >= 0){
+        char position = campo->getMapIndex(i,j);
+        if (position == '*' || position == ' ' || position == '.' || position == 'G') {
+            return true;
+        }
+    }
+    return false;
+}
+
+void Pacman::pacmanThread(Campo *campo, Semaphore *semaphore, int *pontos) {
     timeout(20);
     while(true){
         semaphore->wait();
+
+        if(campo->getIsGameOver()) {
+            semaphore->notify();
+            break;
+        }
 
         char c = getch();
         int i = position.first;
         int j = position.second;
 
-        if((c == 'w' || c == 65) && campo->isValidPosition(i-1, j)) {
+        if((c == 'w' || c == 65) && isValidPosition(i-1, j, campo)) {
+            if(campo->getMapIndex(i-1, j) == '.') {
+                (*pontos)++;
+            }
+
             position = make_pair(i-1, j);
             campo->setPosition(i-1, j, 'P');
             campo->setPosition(i, j, ' ');
-        } else if ((c == 's' || c == 66) && campo->isValidPosition(i+1, j)) {
+        } else if ((c == 's' || c == 66) && isValidPosition(i+1, j, campo)) {
+            if(campo->getMapIndex(i+1, j) == '.') {
+                (*pontos)++;
+            }
+
             position = make_pair(i+1, j);
             campo->setPosition(i+1, j, 'P');
             campo->setPosition(i, j, ' ');
-        } else if ((c == 'd' || c == 67) && campo->isValidPosition(i, j+1)) {
+        } else if ((c == 'd' || c == 67) && isValidPosition(i, j+1, campo)) {
+            if(campo->getMapIndex(i, j+1) == '.') {
+                (*pontos)++;
+            }
+
             position = make_pair(i, j+1);
             campo->setPosition(i, j+1, 'P');
             campo->setPosition(i, j, ' ');
-        } else if ((c == 'a' || c == 68) && campo->isValidPosition(i, j-1)) {
+        } else if ((c == 'a' || c == 68) && isValidPosition(i, j-1, campo)) {
+            if(campo->getMapIndex(i, j-1) == '.') {
+                (*pontos)++;
+            }
+
             position = make_pair(i, j-1);
             campo->setPosition(i, j-1, 'P');
             campo->setPosition(i, j, ' ');
+        }
+
+        if(*pontos == MAX_POINTS) {
+            campo->gameOver();
         }
 
         campo->printMap();

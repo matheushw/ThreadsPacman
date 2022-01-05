@@ -1,8 +1,9 @@
 # Matheus Barcellos de Castro Cunha - 11208238
 # Alexandre Brito Gomes - 11857323
-# Botem os nomes aqui!!
+# Alexandre Lima Palles Rocha - 11797038
 
-FLAGS = -pthread -Wall -pedantic -g -D _POSIX_C_SOURCE=199309L -std=c++11 -lncurses
+
+FLAGS = -pthread -Wall -pedantic -g -D _POSIX_C_SOURCE=199309L -std=c++11
 OBJS = ghost.o semaphore.o pacman.o campo.o game.o
 EXEC = game
 LDFLAGS = -lncurses -pthread

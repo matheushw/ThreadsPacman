@@ -3,6 +3,7 @@
 #include <ncurses.h>
 #include "campo.hpp"
 #include "colors.hpp"
+#include "pacman.hpp"
 
 using namespace std;
 
@@ -32,15 +33,6 @@ Campo::Campo (int init) {
     campo[22] = "#                                  #";
     campo[23] = "####################################";
     fillMapWithPoints();
-}
-
-bool Campo::isValidPosition(int i, int j) {
-    if(i < MAP_LINES && i >= 0 && j < MAP_COLUMNS && j >= 0){
-        if (campo[i][j] == '*' || campo[i][j] == ' ' || campo[i][j] == '.') {
-            return true;
-        }
-    }
-    return false;
 }
 
 //função que printa o mapa do jogo
@@ -89,4 +81,16 @@ void Campo::fillMapWithPoints() {
 //Muda o valor de um indice da matriz campo.
 void Campo::setPosition(int i, int j, char newValue) {
     campo[i][j] = newValue;
+}
+
+char Campo::getMapIndex(int i, int j)  {
+    return campo[i][j];
+}
+
+bool Campo::getIsGameOver()  {
+    return isGameOver;
+}
+
+void Campo::gameOver()  {
+    isGameOver = true;
 }

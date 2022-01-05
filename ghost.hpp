@@ -17,11 +17,13 @@ class Ghost {
         //função para criar os fantasmas
         void ghostThread(Semaphore *sem, Campo *campo);
 
+        bool isValidPosition(int i, int j, Campo *campo);
+
         pair<int, int> getPosition();
 
     private:
         int id;
-        pair<int, int> previousPosition;
+        char previousPositionChar;
         pair<int, int> position;
         string color;
 
