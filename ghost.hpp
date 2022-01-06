@@ -21,10 +21,15 @@ class Ghost {
 
         pair<int, int> getPosition();
 
+        pair<int, int> checkForPacman(int i, int j, Campo *campo);
+
+        int positionsAvailable(int i, int j, Campo *campo);
+
     private:
         int id;
         char previousPositionChar;
         pair<int, int> position;
+        pair<int, int> previousPosition;
         string color;
 
         void move(Campo *campo);
