@@ -5,7 +5,7 @@
 
 #define MAP_LINES 24
 #define MAP_COLUMNS 36
-#define MAX_POINTS 371
+#define MAX_POINTS 370
 
 using namespace std;
 
