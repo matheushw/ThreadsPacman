@@ -55,7 +55,7 @@ int Ghost::positionsAvailable(int i, int j, Campo *campo) {
     return positionsCounter;
 }
 
-//função para criar a thread de um fantasma
+//função executada pela thread do fantasma
 void Ghost::ghostThread(Semaphore *semaphore, Campo *campo) {
     while(true){
         semaphore->wait();

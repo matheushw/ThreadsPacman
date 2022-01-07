@@ -23,6 +23,8 @@ bool Pacman::isValidPosition(int i, int j, Campo *campo) {
     return false;
 }
 
+//Função executada pela thread do pacman, checa os pontos e garante a movimentação 
+//executada em looping, recebendo os direcionais, atualizando os pontos 
 void Pacman::pacmanThread(Campo *campo, Semaphore *semaphore, int *pontos) {
     timeout(20);
     while(true){
