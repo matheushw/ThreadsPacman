@@ -12,21 +12,23 @@ using namespace std;
 class Campo {
     public:
         Campo(int init);
-        //Printa o mapa do jogo
+        //Printa o mapa do jogo.
         void printMap();
-        //Preenche o mapa do jogo com as "bolinhas" que somarão pontos
+        //Preenche o mapa do jogo com as "bolinhas" que somarão pontos.
         void fillMapWithPoints();
         //Muda o valor de um indice da matriz campo.
         void setPosition(int i, int j, char newValue);
-        //Getter de um indíce do mapa
+        //Getter de um indíce do mapa.
         char getMapIndex(int i, int j);
-        //Indica que o jogo acabou
+        //Indica que o jogo acabou.
         void gameOver();
-        //Verifica se o jogo acabou
+        //Verifica se o jogo acabou.
         bool getIsGameOver();
 
     private:
+        //Representa o mapa do jogo.
         string campo[MAP_LINES];
+        //Guarda um indicador de fim de jogo, o qual é acessível por todas a threads por meio de seu getter.
         bool isGameOver;
 };
 

@@ -10,7 +10,7 @@ using namespace std;
 class Ghost {
     public:
         //Construtor
-        Ghost (int _id, pair<int, int> _position, string _color);
+        Ghost (int _id, pair<int, int> _position);
 
         int getId();
 
@@ -30,7 +30,6 @@ class Ghost {
         char previousPositionChar;
         pair<int, int> position;
         pair<int, int> previousPosition;
-        string color;
 
         void move(Campo *campo);
 };

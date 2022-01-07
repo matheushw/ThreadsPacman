@@ -15,8 +15,13 @@ class Semaphore {
         void wait();
 
     private:
+        //Mutex utilizado para dar lock em uma thread.
         mutex mtx;
+
+        //Usado para fazer o gerênciamento de block de uma thread até que ela notificada para prosseguir.
         condition_variable cv;
+
+        //Indica 
         int count;
 };
 

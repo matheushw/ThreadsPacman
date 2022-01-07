@@ -2,7 +2,6 @@
 #include <iostream>
 #include <ncurses.h>
 #include "campo.hpp"
-#include "colors.hpp"
 #include "pacman.hpp"
 
 using namespace std;
@@ -67,7 +66,7 @@ void Campo::printMap() {
     refresh();
 }
 
-//função para preencher o mapa do jogo com as "bolinhas" que somarão pontos
+//função para preencher o mapa do jogo com as "bolinhas" que somarão pontos.
 void Campo::fillMapWithPoints() {
     for (int i=0; i<MAP_LINES;i++){
         for (int j=0;j<MAP_COLUMNS;j++){
@@ -83,14 +82,17 @@ void Campo::setPosition(int i, int j, char newValue) {
     campo[i][j] = newValue;
 }
 
+//Getter de um indice da matrix campo.
 char Campo::getMapIndex(int i, int j)  {
     return campo[i][j];
 }
 
+//Checa se o jogo acabou.
 bool Campo::getIsGameOver()  {
     return isGameOver;
 }
 
+//Indica o fim do jogo.
 void Campo::gameOver()  {
     isGameOver = true;
 }

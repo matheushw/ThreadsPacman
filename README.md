@@ -1,3 +1,8 @@
+## Students
+Matheus Barcellos de Castro Cunha - Nº USP -> 11208238
+Alexandre Lima Palles Rocha - Nº USP -> 11797038
+Alexandre Brito Gomes - Nº USP -> 11857323
+
 # Threads Pacman
 
 <p align="center">
@@ -25,9 +30,7 @@ After running the game, your goal is to collect all the points without being tou
 ### Controls:
 	WASD/ARROWS to control the pacman
 
-## Students
-Matheus Barcellos de Castro Cunha - Nº USP -> 11208238
+## Semaphore usage
 
-Alexandre Lima Palles Rocha - Nº USP -> 11797038
 
-Alexandre Brito Gomes - Nº USP -> 11857323
+## Threads usage

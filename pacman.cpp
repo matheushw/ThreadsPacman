@@ -12,6 +12,7 @@ Pacman::Pacman(int _id, pair<int, int> _position) {
     previousPosition = make_pair(-1, -1);
 }
 
+//função que irá percorrer a matriz verificando posições válidas para que o fantasma se mova
 bool Pacman::isValidPosition(int i, int j, Campo *campo) {
     if(i < MAP_LINES && i >= 0 && j < MAP_COLUMNS && j >= 0){
         char position = campo->getMapIndex(i,j);
